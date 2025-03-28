@@ -1,0 +1,46 @@
+int buzzer=3;
+int pir=7;
+int red=9;
+int green=11;
+int blue=10;
+
+void setup()
+{
+  pinMode(pir,INPUT);
+  pinMode(buzzer,OUTPUT);
+  pinMode(red,OUTPUT);
+  pinMode(green,OUTPUT);
+  pinMode(blue,OUTPUT);
+  
+  digitalWrite(pir,LOW);
+  digitalWrite(buzzer,LOW);
+  digitalWrite(red,LOW);
+  digitalWrite(green,LOW);
+  digitalWrite(blue,LOW);
+}
+
+
+void loop()
+{
+  if(digitalRead(pir)==HIGH)
+  {
+    digitalWrite(buzzer,HIGH);
+    RGB_color(255,0,0);
+    while(digitalRead(pir)==HIGH);
+  }
+  else
+  {
+    digitalWrite(buzzer,LOW);
+    RGB_color(0,255,0);
+  }
+}
+  
+  
+  void RGB_color(int red_v,int green_v, int blue_v)
+  {
+    analogWrite(red,red_v);
+    analogWrite(green,green_v);
+    analogWrite(blue,blue_v);
+  }
+
+    
