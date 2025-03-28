@@ -1,0 +1,36 @@
+int button=0;
+const int bPin=3;
+int red=12;
+int yellow=11;
+int green=10;
+
+void setup()
+{
+  pinMode(red,OUTPUT);
+  pinMode(yellow,OUTPUT);
+  pinMode(green,OUTPUT);
+  pinMode(bPin,INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  button=digitalRead(bPin);
+  if(button==1)
+  {
+    digitalWrite(red,1);
+    Serial.print(STOPn);
+    delay(3000);
+    digitalWrite(red,0);
+    delay(500);
+    digitalWrite(yellow,1);
+    Serial.print(GET READYn);
+    delay(2000);
+    digitalWrite(yellow,0);
+    delay(500);
+    digitalWrite(green,1);
+    Serial.print(BYEn);
+    delay(3000);
+    digitalWrite(green,0);
+  }
+}
