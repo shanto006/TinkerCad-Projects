@@ -1,0 +1,43 @@
+int pb0=0;
+#define pb2 A1
+
+double realdeg;
+
+void setup()
+{
+  pinMode(pb0,OUTPUT);
+  realdeg=0.0;
+}
+
+void loop()
+{
+  int degree;
+  degree=analogRead(pb2);
+  realdeg=(double)degree/1024;
+  realdeg*=5;
+  realdeg-=0.5;
+  realdeg*=100;
+  realdeg=((9/5)*(realdeg))+32;
+   if(realdeg>=-40 && realdeg<=68)
+   {
+     digitalWrite(pb0,HIGH);
+     delay(100);
+     digitalWrite(pb0,LOW);
+     delay(100);
+   }
+  else if(realdeg>=70 && realdeg<=116)
+   {
+     digitalWrite(pb0,HIGH);
+     delay(500);
+     digitalWrite(pb0,LOW);
+     delay(500);
+   }
+  else if(realdeg>=123 && realdeg<=238)
+   {
+     digitalWrite(pb0,HIGH);
+     delay(1000);
+     digitalWrite(pb0,LOW);
+     delay(1000);
+   }
+  else
+    digitalWrite(pb0,HIGH);
