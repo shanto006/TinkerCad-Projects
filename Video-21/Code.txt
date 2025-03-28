@@ -1,0 +1,20 @@
+int pot=A0;
+int readValue;
+int writeValue;
+int bulb=9;
+
+void setup()
+{
+  pinMode(pot,INPUT);
+  pinMode(bulb,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  readValue=analogRead(pot);
+  writeValue=(255.0/1023.0)*readValue;
+  analogWrite(bulb,writeValue);
+  Serial.print("Your are writing a value of  ");
+  Serial.println(writeValue);
+}
