@@ -1,0 +1,14 @@
+int senPin=A0;
+int senValue=0;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(senPin,INPUT);
+}
+
+void loop()
+{
+  senValue=analogRead(senPin);
+  Serial.println(senValue);
+}
