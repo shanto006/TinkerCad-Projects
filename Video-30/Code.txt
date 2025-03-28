@@ -1,0 +1,26 @@
+#define pir 13
+bool pirVal=0;
+#define led 12
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(led,OUTPUT);
+  pinMode(pir,INPUT);
+}
+
+
+void loop()
+{
+  pirVal=digitalRead(pir);
+  if(pirVal==HIGH)
+  {
+    Serial.println("Motion Detected");
+    digitalWrite(led,HIGH);
+  }
+  else
+  {
+    Serial.println("Motion Not Detected");
+    digitalWrite(led,LOW);
+  }
+}
