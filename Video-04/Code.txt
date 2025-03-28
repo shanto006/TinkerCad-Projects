@@ -1,0 +1,76 @@
+#include <Keypad.h>
+
+const byte row=4;
+const byte col=4;
+const int red=10;
+const int green=11;
+const int piezo=12;
+
+char numPad[row][col]= {
+  {'1','2','3'},{'4','5','6'},
+  {'7','8','9'},{'*','0','#'}
+};
+
+byte rowPin[row]={9,8,7,6};
+byte colPin[col]={5,4,3,2};
+
+String password="6861";
+String vstup="";
+
+Keypad cKeypad=Keypad(makeKeymap(numPad), rowPin, colPin, row,col);
+
+
+void setup()
+{
+  pinMode(red,OUTPUT);
+  pinMode(green,OUTPUT);
+  pinMode(piezo,OUTPUT);
+  digitalWrite(red,HIGH);
+  Serial.begin(9600);
+  Serial.print("Enter passcode: ");
+}
+                      
+void loop()
+{
+  char cKey=cKeypad.getKey();
+  
+  if(cKey)
+  {
+    if(vstup.length()<4)
+    {
+      Serial.print("*");
+      vstup+=cKey;
+    }
+  }
+ 
+ if(vstup.length()==4)
+ {
+   delay(1500);
+  if(password==vstup)
+  {
+    Serial.println("\nEnter");
+    digitalWrite(red,LOW);
+    digitalWrite(green,HIGH);
+    tone(piezo,500);
+    delay(100);
+    noTone(piezo);
+  }
+   else
+   {
+    Serial.println("\nWrong Password");
+    digitalWrite(red,HIGH);
+    digitalWrite(green,LOW);
+    tone(piezo,1000);
+    delay(800);
+    tone(piezo,1000);
+    delay(800);
+    noTone(piezo);
+   }
+    delay(1500);
+   
+   vstup="";
+   Serial.println("EnterPassword : ");
+   digitalWrite(red,HIGH);
+   digitalWrite(green,LOW);
+}
+}
