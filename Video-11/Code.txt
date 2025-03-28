@@ -1,0 +1,64 @@
+void setup()
+{
+  pinMode(2,INPUT);
+  pinMode(3,INPUT);
+  pinMode(4,INPUT);
+  pinMode(5,INPUT);
+  pinMode(6,INPUT);
+  pinMode(7,INPUT);
+  pinMode(8,INPUT);
+  pinMode(9,INPUT);
+  
+  pinMode(13,OUTPUT);
+}
+
+
+void loop()
+{
+  int b1=digitalRead(2);
+  int b2=digitalRead(3);
+  int b3=digitalRead(4);
+  int b4=digitalRead(5);
+  int b5=digitalRead(6);
+  int b6=digitalRead(7);
+  int b7=digitalRead(8);
+  int b8=digitalRead(9);
+  
+  if(b1==1)
+  {
+    tone(13,300,100);
+  }
+  if(b2==1)
+  {
+    tone(13,400,100);
+  }
+  if(b3==1)
+  {
+    tone(13,500,100);
+  }
+  if(b4==1)
+  {
+    tone(13,600,100);
+  }
+  if(b5==1)
+  {
+    tone(13,700,100);
+  }
+  if(b6==1)
+  {
+    tone(13,800,100);
+  }
+  if(b7==1)
+  {
+    tone(13,900,100);
+  }
+  if(b8==1)
+  {
+    tone(13,1000,100);
+  }
+  
+  delay(10);
+}
+
+  
+  
