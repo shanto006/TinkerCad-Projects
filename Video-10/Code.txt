@@ -1,0 +1,36 @@
+
+  {
+  }
+  unsigned long nowTime=millis();
+  elapsedTime=nowTime-startTime;
+  microFarad=((float)elapsedTime/resistorValue)*1000;
+  Serial.print(elapsedTime);
+  Serial.print(" mS       ");
+  
+  
+  if(microFarad>1)
+  {
+    Serial.print((long)microFarad);
+    Serial.println(" microFarads");
+  }
+  else
+  {
+    nanoFarad=microFarad*1000.0;
+    Serial.print((long)nanoFarad);
+    Serial.println(" nanoFarads");
+    delay(500);
+  }
+  
+  digitalWrite(charge,LOW);
+  pinMode(discharge,OUTPUT);
+  digitalWrite(discharge,LOW);
+  delay(10);
+  
+  
+  while(analogRead(analog)>0)
+  {
+  }
+  
+  pinMode(discharge,INPUT);
+  delay(500);
+}
