@@ -1,0 +1,54 @@
+#include <Servo.h>
+
+const int trig=6;
+const int echo=7;
+
+Servo Myservo;
+
+void setup()
+{
+  Serial.begin(9600);
+  Myservo.attach(5);
+  
+  pinMode(trig,OUTPUT);
+  pinMode(echo,INPUT);
+  
+  Serial.print("  DISTANCE  ");
+  Serial.print("  MEASUREMENT  ");
+  delay(2000);
+}
+
+void loop()
+{
+  long duration,cm;
+  
+  digitalWrite(trig,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig,LOW);
+  
+  duration=pulseIn(echo,HIGH);
+  cm=microsecondsToCentimeters(duration);
+  
+  Serial.print("Distance : ");
+  Serial.print(cm);
+  Serial.println(" CM");
+  delay(100);
+  
+  
+  if(cm>=10)
+    Myservo.write(0);
+  else
+    Myservo.write(90);
+  
+  Serial.println();
+  delay(100);
+}
+
+
+
+long microsecondsToCentimeters(long microseconds)
+{
+  return microseconds/29/2;
+}
