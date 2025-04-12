@@ -1,0 +1,27 @@
+int temo=A0;
+float temp_C;
+float volt;
+float analog_read;
+float temp_F;
+
+void setup()
+{
+  pinMode(A0,INPUT);
+  Serial.begin(9600);
+  
+}
+
+void loop()
+{
+  analog_read=analogRead(A0);
+  Serial.print("Analog reading");
+  Serial.println(analog_read);
+  volt=analog_read*5/1024;
+  Serial.print("Volatge reading : ");
+  Serial.println(volt);
+  temp_C=100*(volt-0.5);
+  Serial.println("Celsius reading :" +String(temp_C)+(" C"));
+  temp_F=(temp_C*9/5)+32;
+  Serial.println("Fahrenheit reading:"+String(temp_F)+(" F"));
+  delay(3000);
+}
