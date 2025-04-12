@@ -1,0 +1,52 @@
+#include <IRremote.h>
+
+int IR_Recv=12;
+int blue=2;
+int green=3;
+int red=4;
+
+IRrecv irrecv(IR_Recv);
+decode_results results;
+
+void setup()
+{
+  Serial.begin(9600);
+  irrecv.enableIRIn();
+  pinMode(2,OUTPUT);
+  pinMode(3,OUTPUT);
+  pinMode(4,OUTPUT);
+  
+}
+
+void loop()
+{
+  
+  if (irrecv.decode(&results))
+  {
+    long int decCode=results.value;
+    Serial.println(results.value);
+    switch (results.value)
+    {
+      case 16582903://1
+         digitalWrite(blue,HIGH);
+         break;
+      case 16615543://2
+         digitalWrite(green,HIGH);
+         break;
+      case 16599223://3
+         digitalWrite(red,HIGH);
+         break;
+      case 16591063://4
+         digitalWrite(blue,LOW);
+         break;
+      case 16623703://5
+         digitalWrite(green,LOW);
+         break;
+      case 16607383://6
+         digitalWrite(red,LOW);
+         break;
+    }
+    irrecv.resume();
+  }
+  delay(10);
+}
